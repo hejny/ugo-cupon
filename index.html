@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupon Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .form-container {
+            margin: 20px auto;
+            max-width: 400px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .coupon-preview {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed #4CAF50;
+            display: inline-block;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .coupon-preview p {
+            margin: 10px 0;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coupon Creator</h1>
+    <div class="form-container">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" placeholder="Enter your first name">
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email">
+        
+        <label for="customText">Custom Text</label>
+        <input type="text" id="customText" placeholder="Enter custom text">
+        
+        <label for="date">Date</label>
+        <input type="date" id="date">
+        
+        <button class="button" onclick="generateCoupon()">Generate Coupon</button>
+    </div>
+    
+    <div class="coupon-preview" id="couponPreview" style="display: none;">
+        <p id="couponName"></p>
+        <p id="couponEmail"></p>
+        <p id="couponText"></p>
+        <p id="couponDate"></p>
+    </div>
+
+    <script>
+        function generateCoupon() {
+            const firstName = document.getElementById('firstName').value || 'Your Name';
+            const email = document.getElementById('email').value || 'example@example.com';
+            const customText = document.getElementById('customText').value || 'Your Custom Text';
+            const date = document.getElementById('date').value || 'Your Date';
+
+            document.getElementById('couponName').textContent = `Name: ${firstName}`;
+            document.getElementById('couponEmail').textContent = `Email: ${email}`;
+            document.getElementById('couponText').textContent = `Text: ${customText}`;
+            document.getElementById('couponDate').textContent = `Date: ${date}`;
+            
+            document.getElementById('couponPreview').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
