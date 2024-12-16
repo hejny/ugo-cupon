@@ -24,17 +24,6 @@
             padding: 10px;
             margin-bottom: 10px;
         }
-        .coupon-preview {
-            margin-top: 20px;
-            padding: 20px;
-            border: 2px dashed #4CAF50;
-            display: inline-block;
-            text-align: center;
-            background-color: #f9f9f9;
-        }
-        .coupon-preview p {
-            margin: 10px 0;
-        }
         .button {
             background-color: #4CAF50;
             color: white;
@@ -45,45 +34,49 @@
         .button:hover {
             background-color: #45a049;
         }
+        .coupon-preview {
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px dashed #4CAF50;
+            display: inline-block;
+            text-align: center;
+            background-color: #f9f9f9;
+        }
+        .coupon-preview img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
-    <h1>Coupon Creator</h1>
+    <h1>🎫 Ugo kupón</h1>
     <div class="form-container">
         <label for="firstName">First Name</label>
         <input type="text" id="firstName" placeholder="Enter your first name">
         
-        <label for="email">Email</label>
-        <input type="email" id="email" placeholder="Enter your email">
-        
-        <label for="customText">Custom Text</label>
-        <input type="text" id="customText" placeholder="Enter custom text">
-        
-        <label for="date">Date</label>
-        <input type="date" id="date">
-        
+     
+
         <button class="button" onclick="generateCoupon()">Generate Coupon</button>
     </div>
     
     <div class="coupon-preview" id="couponPreview" style="display: none;">
-        <p id="couponName"></p>
-        <p id="couponEmail"></p>
-        <p id="couponText"></p>
-        <p id="couponDate"></p>
+        <h2>Coupon Preview</h2>
+        <img id="couponImage" alt="Coupon">
     </div>
 
     <script>
         function generateCoupon() {
             const firstName = document.getElementById('firstName').value || 'Your Name';
-            const email = document.getElementById('email').value || 'example@example.com';
-            const customText = document.getElementById('customText').value || 'Your Custom Text';
-            const date = document.getElementById('date').value || 'Your Date';
+          
+            // Get today's date in DD.MM.YYYY format
+            const today = new Date();
+            const formattedDate = `${today.getDate().toString().padStart(2, '0')}.${(today.getMonth() + 1).toString().padStart(2, '0')}.${today.getFullYear()}`;
 
-            document.getElementById('couponName').textContent = `Name: ${firstName}`;
-            document.getElementById('couponEmail').textContent = `Email: ${email}`;
-            document.getElementById('couponText').textContent = `Text: ${customText}`;
-            document.getElementById('couponDate').textContent = `Date: ${date}`;
-            
+            // Generate the coupon image URL
+            const couponUrl = `https://img.hyperise.io/i/fklGMxvld.png?first_name=${encodeURIComponent(firstName)}&custom_text_1=${encodeURIComponent(formattedDate)}`;
+
+            // Set the image source and show the preview
+            document.getElementById('couponImage').src = couponUrl;
             document.getElementById('couponPreview').style.display = 'block';
         }
     </script>
